@@ -50,7 +50,7 @@ class NavRailMixin:
         self.comic_browser_button.set_dayu_filters([".cbz", ".cbr", ".cb7", ".cbt"])
 
         self.project_browser_button = MClickBrowserFileToolButton(multiple=False)
-        self.project_browser_button.set_dayu_filters([".ctpr"])
+        self.project_browser_button.set_dayu_filters([".mtpr", ".ctpr"])
 
         self.tool_menu = MMenu(parent=self)
 

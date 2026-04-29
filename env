@@ -1,0 +1,18 @@
+# ==========================================
+# CLAVES DE IA PARA MANGA IMAGE TRANSLATOR
+# ==========================================
+
+# 1. Google Gemini
+GEMINI_API_KEY=""
+GEMINI_MODEL=gemini-3.1-flash-lite-preview
+
+# 2. OpenAI (ChatGPT)
+OPENAI_API_KEY=""
+
+# 3. DeepSeek
+DEEPSEEK_API_KEY=""
+
+# 4. Grok (xAI)
+CUSTOM_OPENAI_API_KEY=""
+CUSTOM_OPENAI_API_BASE=https://api.x.ai/v1
+CUSTOM_OPENAI_MODEL=grok-4-1-fast-reasoning

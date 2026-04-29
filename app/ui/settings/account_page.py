@@ -19,11 +19,11 @@ class AccountPage(QtWidgets.QWidget):
         logged_out_layout.setContentsMargins(0, 0, 0, 0)
         logged_out_layout.setSpacing(15)
 
-        title_label = MLabel(self.tr("Sign in to Comic Translate")).h3()
+        title_label = MLabel(self.tr("Sign in to Mukai-Translate")).h3()
         title_label.setAlignment(QtCore.Qt.AlignmentFlag.AlignCenter)
 
         description_text = self.tr(
-            "Sign in to use Comic Translate, see your credits balance, "
+            "Sign in to use Mukai-Translate, see your credits balance, "
             "and purchase additional credits."
         )
         description_label = MLabel(description_text)

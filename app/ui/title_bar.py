@@ -1,4 +1,4 @@
-"""Custom frameless title bar for Comic Translate."""
+"""Custom frameless title bar for Mukai-Translate."""
 
 from __future__ import annotations
 
@@ -379,7 +379,7 @@ class _ProjectDetailsPopup(QtWidgets.QFrame):
         self.name_edit.returnPressed.connect(self._emit_apply)
         file_row.addWidget(self.name_edit, 1)
 
-        self.extension_label = QtWidgets.QLabel(".ctpr", self)
+        self.extension_label = QtWidgets.QLabel(".mtpr", self)
         self.extension_label.setObjectName("projectPopupSuffix")
         self.extension_label.setAlignment(
             Qt.AlignmentFlag.AlignVCenter | Qt.AlignmentFlag.AlignLeft
@@ -621,7 +621,7 @@ class _ProjectDetailsPopup(QtWidgets.QFrame):
     def _emit_apply(self) -> None:
         stem = self.name_edit.text().strip()
         directory = os.path.expanduser(self.location_edit.text().strip())
-        if stem.lower().endswith(".ctpr"):
+        if stem.lower().endswith(".mtpr") or stem.lower().endswith(".ctpr"):
             stem = stem[:-5]
 
         if not stem:
@@ -1112,7 +1112,7 @@ def _parse_qcolor(value: str) -> QtGui.QColor:
 
 def _project_stem_from_title(title: str) -> str:
     clean = title.rstrip("*").strip()
-    if clean.lower().endswith(".ctpr"):
+    if clean.lower().endswith(".mtpr") or clean.lower().endswith(".ctpr"):
         clean = clean[:-5]
     return clean.strip()
 

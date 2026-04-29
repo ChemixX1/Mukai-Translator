@@ -31,13 +31,13 @@
     <name>AccountPage</name>
     <message>
         <location filename="../../app/ui/settings/account_page.py" line="22" />
-        <source>Sign in to Comic Translate</source>
-        <translation>Connectez-vous à Comic Translate</translation>
+        <source>Sign in to Mukai-Translate</source>
+        <translation>Connectez-vous à Mukai-Translate</translation>
     </message>
     <message>
         <location filename="../../app/ui/settings/account_page.py" line="26" />
-        <source>Sign in to use Comic Translate, see your credits balance, and purchase additional credits.</source>
-        <translation>Connectez-vous pour utiliser Comic Translate, voir votre solde de crédits et acheter des crédits supplémentaires.</translation>
+        <source>Sign in to use Mukai-Translate, see your credits balance, and purchase additional credits.</source>
+        <translation>Connectez-vous pour utiliser Mukai-Translate, voir votre solde de crédits et acheter des crédits supplémentaires.</translation>
     </message>
     <message>
         <location filename="../../app/ui/settings/account_page.py" line="33" />

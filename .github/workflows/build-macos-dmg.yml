@@ -39,7 +39,7 @@ jobs:
       - name: Upload DMG artifact
         uses: actions/upload-artifact@v6
         with:
-          name: Comic-Translate-macOS
-          path: "dist/Comic Translate.dmg"
+          name: Mukai-Translate-macOS
+          path: "dist/Mukai-Translate.dmg"
           if-no-files-found: error
           retention-days: 30

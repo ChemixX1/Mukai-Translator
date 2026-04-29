@@ -19,7 +19,7 @@ IMPORT_EXTS = {
     ".pdf", ".epub",
     ".zip", ".rar", ".7z", ".tar",
     ".cbz", ".cbr", ".cb7", ".cbt",
-    ".ctpr",
+    ".mtpr", ".ctpr",
 }
 
 
@@ -645,8 +645,8 @@ class StartupHomeScreen(QtWidgets.QWidget):
         )
         if not paths:
             return
-        projects = [p for p in paths if p.lower().endswith(".ctpr")]
-        images   = [p for p in paths if not p.lower().endswith(".ctpr")]
+        projects = [p for p in paths if p.lower().endswith(".mtpr") or p.lower().endswith(".ctpr")]
+        images   = [p for p in paths if not (p.lower().endswith(".mtpr") or p.lower().endswith(".ctpr"))]
         if projects:
             self.sig_open_project.emit(projects[0])
         if images:

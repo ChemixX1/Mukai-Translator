@@ -10,15 +10,17 @@ import imkit as imk
 
 
 MODEL_MAP = {
-    "Custom": "",  
-    "Deepseek-v3": "deepseek-chat", 
+    "Custom": "",
+    "Deepseek-v3": "deepseek-chat",
     "GPT-4.1": "gpt-4.1",
     "GPT-4.1-mini": "gpt-4.1-mini",
     "Claude-4.6-Sonnet": "claude-sonnet-4-6",
     "Claude-4.5-Haiku": "claude-haiku-4-5-20251001",
     "Gemini-2.0-Flash": "gemini-2.0-flash",
     "Gemini-3.0-Flash": "gemini-3-flash-preview",
-    "Gemini-2.5-Pro": "gemini-2.5-pro"
+    "Gemini-2.5-Pro": "gemini-2.5-pro",
+    "Grok-3": "grok-3",
+    "Grok-3-Mini": "grok-3-mini",
 }
 
 def encode_image_array(img_array: np.ndarray):

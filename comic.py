@@ -3,7 +3,7 @@ import logging
 import hashlib
 import json
 import threading
-from PySide6.QtGui import QIcon, QPixmap
+from PySide6.QtGui import QIcon, QPixmap, QFontDatabase
 from PySide6.QtCore import QSettings, QTranslator, QLocale, \
     Qt, QTimer, QThread, QObject, Signal, Slot, QEvent
 from PySide6.QtCore import QLibraryInfo
@@ -15,7 +15,7 @@ from app.ui.splash_screen import SplashScreen
 def _extract_project_file(argv: list[str]) -> str | None:
     for arg in argv[1:]:
         candidate = arg.strip('"')
-        if candidate.lower().endswith(".ctpr") and os.path.exists(candidate):
+        if (candidate.lower().endswith(".mtpr") or candidate.lower().endswith(".ctpr")) and os.path.exists(candidate):
             return candidate
     return None
 
@@ -23,7 +23,7 @@ def _extract_project_file(argv: list[str]) -> str | None:
 def _single_instance_server_name() -> str:
     seed = os.path.abspath(__file__).lower().encode("utf-8", errors="ignore")
     digest = hashlib.sha1(seed).hexdigest()[:12]
-    return f"ComicTranslate-{digest}"
+    return f"MukaiTranslator-{digest}"
 
 
 def _encode_ipc_message(payload: dict) -> bytes:
@@ -143,7 +143,7 @@ def main():
     if sys.platform == "win32":
         # Necessary Workaround to set Taskbar Icon on Windows
         import ctypes
-        myappid = u'ComicLabs.ComicTranslate' # arbitrary string
+        myappid = u'MukaiLabs.MukaiTranslator' # arbitrary string
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
     # Create QApplication directly instead of using the context manager
@@ -170,11 +170,18 @@ def main():
         server.listen(server_name)
      
     # Set the application icon
-    # icon = QIcon(":/icons/window_icon.png")  
+    # icon = QIcon(":/icons/window_icon.png")
     current_file_dir = os.path.dirname(os.path.abspath(__file__))
     icon_path = os.path.join(current_file_dir, 'resources', 'icons', 'icon.ico')
     icon = QIcon(icon_path)
     app.setWindowIcon(icon)
+
+    # Load bundled fonts
+    bundled_fonts_dir = os.path.join(current_file_dir, 'resources', 'fonts')
+    if os.path.isdir(bundled_fonts_dir):
+        for _fname in os.listdir(bundled_fonts_dir):
+            if os.path.splitext(_fname)[1].lower() in ('.ttf', '.ttc', '.otf', '.woff', '.woff2'):
+                QFontDatabase.addApplicationFont(os.path.join(bundled_fonts_dir, _fname))
 
     # Show Splash Screen
     splash_pix = QPixmap(os.path.join(current_file_dir, 'resources', 'icons', 'splash.png'))
@@ -211,7 +218,7 @@ def main():
         def request_open_project(self, path: str):
             if not path:
                 return
-            if not path.lower().endswith(".ctpr"):
+            if not (path.lower().endswith(".mtpr") or path.lower().endswith(".ctpr")):
                 return
             if not os.path.exists(path):
                 return

@@ -281,7 +281,7 @@ class ImageStateController:
 
     def clear_state(self):
         # Clear existing image data
-        self.main.setWindowTitle("Project1.ctpr[*]")
+        self.main.setWindowTitle("Project1.mtpr[*]")
         self._close_transient_skip_notice()
         self._hide_active_page_skip_error()
         self._page_skip_errors.clear()
@@ -315,7 +315,7 @@ class ImageStateController:
         self.main.set_project_clean()
 
     def thread_load_images(self, paths: List[str]):
-        if paths and paths[0].lower().endswith('.ctpr'):
+        if paths and (paths[0].lower().endswith('.mtpr') or paths[0].lower().endswith('.ctpr')):
             self.main.project_ctrl.thread_load_project(paths[0])
             return
 

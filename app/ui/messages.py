@@ -91,16 +91,23 @@ class Messages:
 
     @staticmethod
     def show_custom_not_configured_error(parent):
-        """
-        Show an error message when Custom is selected without proper configuration.
-        Guides users to use the Credits system instead.
-        """
         MMessage.error(
             text=QCoreApplication.translate(
                 "Messages",
-                "Custom requires advanced API configuration. Most users should use the Credits system instead.\n"
-                "Please sign in via Settings > Account to use credits, or configure Custom API settings in Settings > Advanced."
+                "Custom requires an API Key, Endpoint URL and Model. Please configure them in Settings > Advanced."
             ),
+            parent=parent,
+            duration=None,
+            closable=True
+        )
+
+    @staticmethod
+    def show_api_key_required_error(parent, service: str):
+        MMessage.error(
+            text=QCoreApplication.translate(
+                "Messages",
+                "API Key required for {}. Please add it in Settings > Advanced."
+            ).format(service),
             parent=parent,
             duration=None,
             closable=True

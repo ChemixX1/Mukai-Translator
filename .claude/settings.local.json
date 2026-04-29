@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(rm _gen_splash.py)",
+      "Bash(python -c \"import comic; print\\('OK'\\)\")",
+      "Bash(python _gen_splash.py)",
+      "Bash(.venv/Scripts/python --version)",
+      "Bash(.venv/Scripts/pip show *)",
+      "Bash(py --version)"
+    ]
+  }
+}

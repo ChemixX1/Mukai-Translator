@@ -53,7 +53,7 @@ class ComicTranslate(ComicTranslateUI):
 
     def __init__(self, parent=None):
         super(ComicTranslate, self).__init__(parent)
-        self.setWindowTitle("Project1.ctpr[*]")
+        self.setWindowTitle("Project1.mtpr[*]")
 
         # Memory logging toggle for local diagnostics.
         # Start as early as possible after QWidget init so we can attribute idle RSS.
@@ -294,7 +294,7 @@ class ComicTranslate(ComicTranslateUI):
         """Load a .ctpr project selected on the home screen."""
         if not self._confirm_start_new_project():
             return
-        if not path or not path.lower().endswith(".ctpr"):
+        if not path or not (path.lower().endswith(".mtpr") or path.lower().endswith(".ctpr")):
             # Treat as generic files
             self._guarded_thread_load_images([path])
             return

@@ -466,7 +466,7 @@ class ProjectController:
             return
 
         self.main.image_ctrl.clear_state()
-        self.main.setWindowTitle(f"{self.main.tr('RecoveredProject.ctpr')}[*]")
+        self.main.setWindowTitle(f"{self.main.tr('RecoveredProject.mtpr')}[*]")
 
         load_failed = {"value": False}
 
@@ -480,7 +480,7 @@ class ProjectController:
             self.update_ui_from_project()
             # Keep recovered data as an unsaved project so users can choose a destination.
             self.main.project_file = None
-            self.main.setWindowTitle(f"{self.main.tr('RecoveredProject.ctpr')}[*]")
+            self.main.setWindowTitle(f"{self.main.tr('RecoveredProject.mtpr')}[*]")
             self.main.mark_project_dirty()
             self.clear_recovery_checkpoint()
 
@@ -1055,12 +1055,12 @@ class ProjectController:
     def launch_save_proj_dialog(self):
         file_dialog = QtWidgets.QFileDialog()
         initial_dir = self._get_default_project_dialog_dir()
-        initial_path = os.path.join(initial_dir, "untitled.ctpr")
+        initial_path = os.path.join(initial_dir, "untitled.mtpr")
         file_name, _ = file_dialog.getSaveFileName(
             self.main,
             "Save Project As",
             initial_path,
-            "Project Files (*.ctpr);;All Files (*)"
+            "Project Files (*.mtpr *.ctpr);;All Files (*)"
         )
         if file_name:
             self._last_project_dialog_dir = os.path.dirname(file_name)
@@ -1113,8 +1113,8 @@ class ProjectController:
         target_path = os.path.normpath(os.path.abspath(os.path.expanduser(target_path or "")))
         if not target_path:
             return False
-        if not target_path.lower().endswith(".ctpr"):
-            target_path = f"{target_path}.ctpr"
+        if not (target_path.lower().endswith(".mtpr") or target_path.lower().endswith(".ctpr")):
+            target_path = f"{target_path}.mtpr"
 
         current_path = (
             os.path.normpath(os.path.abspath(self.main.project_file))
@@ -1331,7 +1331,7 @@ class ProjectController:
         if not os.path.isfile(normalized_path):
             self.remove_recent_project(normalized_path)
             self._refresh_home_screen()
-            self.main.setWindowTitle("Project1.ctpr[*]")
+            self.main.setWindowTitle("Project1.mtpr[*]")
             self.main.project_file = None
             QtWidgets.QMessageBox.warning(
                 self.main,
@@ -1362,7 +1362,7 @@ class ProjectController:
             self.main.default_error_handler(error_tuple)
             exctype, value, _ = error_tuple
             self.main.project_file = None
-            self.main.setWindowTitle("Project1.ctpr[*]")
+            self.main.setWindowTitle("Project1.mtpr[*]")
             if exctype is FileNotFoundError or isinstance(value, FileNotFoundError):
                 self.remove_recent_project(normalized_path)
                 self._refresh_home_screen()
